@@ -1,66 +1,71 @@
 <!DOCTYPE html>
+<!-- Menentukan bahasa dokumen sebagai Bahasa Indonesia -->
 <html lang="id">
 <head>
+    <!-- Pengaturan karakter encoding agar simbol-simbol terbaca dengan benar -->
     <meta charset="UTF-8">
+    
+    <!-- Pengaturan viewport agar responsif di HP (lebar mengikuti perangkat, zoom dimatikan) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Judul Tab Browser -->
     <title>The Wedding of Diana & Ikbal</title>
     
-    <!-- Tailwind CSS -->
+    <!-- === LIBRARY EKSTERNAL === -->
+    
+    <!-- Memuat Tailwind CSS (Framework CSS untuk styling cepat) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Memuat Google Fonts (Jenis font yang digunakan: Great Vibes, Cinzel, Playfair, Lato) -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Icons -->
+    <!-- Memuat FontAwesome (Untuk ikon-ikon seperti amplop, musik, daun, dll) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Animation CSS -->
+    <!-- Memuat AOS Animation (Library untuk animasi saat di-scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- Konfigurasi Tailwind & Custom Styles -->
+    <!-- === CUSTOM CSS (Gaya Tambahan) === -->
     <style>
+        /* Mendefinisikan variabel warna agar mudah diganti-ganti */
         :root {
-            /* Palette Warna Baru: Hijau Emerald & Gold */
-            --primary-green: #2F5233; /* Hijau Tua Mewah */
-            --secondary-green: #76B947; /* Hijau Daun Segar */
-            --primary-gold: #C5A059;
-            --light-gold: #E5D3B3;
-            --soft-cream: #FAF9F6;
-            --text-dark: #1a2f1c;
+            --primary-green: #2F5233; /* Hijau Emerald Gelap */
+            --secondary-green: #76B947; /* Hijau Daun Terang */
+            --primary-gold: #C5A059; /* Emas Mewah */
+            --dark-gold: #8A6E2F; /* Emas Gelap/Coklat */
+            --bronze: #8B4513; /* Coklat Tembaga */
+            --light-gold: #E5D3B3; /* Emas Pucat */
+            --soft-cream: #FAF9F6; /* Putih Tulang */
+            --text-dark: #1a2f1c; /* Teks Gelap */
         }
 
+        /* Styling dasar Body */
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--soft-cream);
+            font-family: 'Lato', sans-serif; /* Font utama */
+            background-color: var(--soft-cream); /* Warna dasar */
             color: var(--text-dark);
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-            /* Texture Halus Batik/Kertas */
+            overflow-x: hidden; /* Mencegah scroll ke samping */
+            -webkit-tap-highlight-color: transparent; /* Menghilangkan highlight biru saat tap di HP */
+            /* Background Texture Kertas */
             background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
         }
 
-        /* Tipografi Khusus */
-        .font-script {
-            font-family: 'Great Vibes', cursive;
-        }
-        .font-header {
-            font-family: 'Cinzel', serif;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
+        /* --- PENGATURAN FONT KHUSUS --- */
+        .font-script { font-family: 'Great Vibes', cursive; } /* Font sambung */
+        .font-header { font-family: 'Cinzel', serif; } /* Font judul tegas */
+        .font-serif { font-family: 'Playfair Display', serif; } /* Font elegan */
 
-        /* === UPGRADED: Efek Text Gold Super Mewah === */
+        /* --- EFEK TEKS EMAS MENGKILAP --- */
         .text-gold {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); /* Gradasi emas */
+            -webkit-background-clip: text; /* Klip background ke bentuk teks */
+            -webkit-text-fill-color: transparent; /* Teks jadi transparan agar background terlihat */
             background-size: 200% auto;
-            animation: shine 4s linear infinite;
-            filter: drop-shadow(0 0 2px rgba(197, 160, 89, 0.3));
+            animation: shine 4s linear infinite; /* Animasi kilau */
+            filter: drop-shadow(0 0 2px rgba(197, 160, 89, 0.3)); /* Bayangan halus */
         }
 
-        /* Ornamen Divider Batik Style (CSS) */
+        /* --- DIVIDER / PEMBATAS DENGAN ORNAMEN --- */
         .divider-ornament {
             display: flex;
             align-items: center;
@@ -68,6 +73,7 @@
             margin: 2rem 0;
             opacity: 0.8;
         }
+        /* Garis kiri dan kanan ikon */
         .divider-ornament::before, .divider-ornament::after {
             content: "";
             height: 1px;
@@ -75,62 +81,86 @@
             flex: 1;
             margin: 0 15px;
         }
+        /* Ikon tengah yang berdenyut */
         .divider-icon {
             color: var(--primary-gold);
             font-size: 1.5rem;
             animation: pulse-gold 2s infinite;
         }
 
+        /* --- KEYFRAMES (Definisi Gerakan Animasi CSS) --- */
+        
+        /* Animasi Kilau Teks */
         @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+            to { background-position: 200% center; }
         }
         
+        /* Animasi Denyut Emas */
         @keyframes pulse-gold {
             0% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 10px rgba(197, 160, 89, 0.8); }
             100% { transform: scale(1); opacity: 0.8; }
         }
 
-        /* Floating Leaves Animation Background */
-        .leaf {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            pointer-events: none;
+        /* --- ANIMASI DAUN & BUNGA MEWAH (REVISI BARU) --- */
+        /* Container untuk menampung elemen jatuh */
+        .falling-container {
+            position: fixed; /* Tetap di layar meski di-scroll */
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            z-index: 9998; /* Di atas konten tapi di bawah cover (Cover z-index 9999) */
+            pointer-events: none; /* Agar tidak menghalangi klik user */
             overflow: hidden;
         }
-        .leaf div {
+
+        /* Elemen individu (daun/bunga) */
+        .falling-item {
             position: absolute;
+            top: -10%; /* Mulai dari atas layar */
             display: block;
-        }
-        .leaf div:nth-child(1) { left: 20%; animation: fall 15s linear infinite; top: -10%; }
-        .leaf div:nth-child(2) { left: 70%; animation: fall 15s linear infinite; animation-delay: 5s; top: -10%; }
-        .leaf div:nth-child(3) { left: 10%; animation: fall 20s linear infinite; animation-delay: 2s; top: -10%; }
-        .leaf div:nth-child(4) { left: 50%; animation: fall 18s linear infinite; animation-delay: 8s; top: -10%; }
-        
-        @keyframes fall {
-            0% { opacity: 0; transform: translateY(-10%) rotate(0deg); }
-            10% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+            opacity: 0; /* Awalnya transparan */
         }
 
-        /* === NEW: Fireflies / Magic Dust Animation === */
+        /* Keyframes Gerakan Jatuh Melayang (Swaying) */
+        @keyframes falling-sway {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8; /* Muncul perlahan */
+            }
+            50% {
+                /* Bergerak ke kanan/kiri saat turun */
+                transform: translateY(50vh) translateX(50px) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                /* Sampai bawah layar */
+                transform: translateY(110vh) translateX(-50px) rotate(360deg);
+                opacity: 0; /* Menghilang */
+            }
+        }
+        
+        /* Variasi Gerakan Jatuh 2 (Arah sebaliknya) */
+        @keyframes falling-sway-reverse {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            50% { transform: translateY(50vh) translateX(-50px) rotate(-180deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(50px) rotate(-360deg); opacity: 0; }
+        }
+
+        /* --- ANIMASI KUNANG-KUNANG (FIREFLIES) --- */
         .firefly-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; /* Di atas background, di bawah konten */
+            z-index: 1; 
             pointer-events: none;
         }
         
         .firefly {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 4px; height: 4px;
             background: #C5A059;
             border-radius: 50%;
             box-shadow: 0 0 10px 2px rgba(197, 160, 89, 0.4);
@@ -138,62 +168,54 @@
             opacity: 0;
         }
         
+        /* Posisi awal kunang-kunang manual */
         .firefly:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; transform: scale(0.6); }
         .firefly:nth-child(2) { top: 30%; left: 80%; animation-delay: 2s; transform: scale(1); }
-        .firefly:nth-child(3) { top: 70%; left: 20%; animation-delay: 4s; transform: scale(0.8); }
-        .firefly:nth-child(4) { top: 50%; left: 50%; animation-delay: 6s; transform: scale(1.2); }
-        .firefly:nth-child(5) { top: 90%; left: 90%; animation-delay: 1s; transform: scale(0.7); }
-        .firefly:nth-child(6) { top: 20%; left: 40%; animation-delay: 3s; transform: scale(0.9); }
-        
+        /* ... dst ... */
+
         @keyframes fly {
             0% { opacity: 0; transform: translate(0, 0); }
             20% { opacity: 0.8; }
             50% { opacity: 0.4; transform: translate(50px, -50px); }
-            80% { opacity: 0.8; }
             100% { opacity: 0; transform: translate(-30px, 30px); }
         }
 
-        /* Cover Overlay Style */
+        /* --- COVER UTAMA / SPLASH SCREEN --- */
         #cover-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: linear-gradient(rgba(47, 82, 51, 0.85), rgba(20, 40, 25, 0.95)), url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop'); 
+            top: 0; left: 0; width: 100%; height: 100vh;
+            /* Background cover dengan gradien hijau tua */
+            background-image: linear-gradient(rgba(47, 82, 51, 0.9), rgba(20, 40, 25, 0.95)), url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
-            z-index: 9999;
+            z-index: 9999; /* Paling atas */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1); /* Efek geser ke atas saat dibuka */
         }
         
+        /* Kelas untuk menyembunyikan cover */
         .cover-hidden {
             transform: translateY(-100%);
         }
 
-        /* Musik Control */
+        /* --- TOMBOL MUSIK --- */
         .music-control {
             position: fixed;
-            bottom: 100px;
-            right: 20px;
-            z-index: 50;
-            width: 45px;
-            height: 45px;
+            bottom: 100px; right: 20px;
+            z-index: 9990; /* Di atas konten */
+            width: 45px; height: 45px;
             background: var(--primary-green);
             border: 2px solid var(--primary-gold);
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             color: var(--primary-gold);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            animation: spin 4s linear infinite;
+            animation: spin 4s linear infinite; /* Animasi berputar */
             cursor: pointer;
-            display: none; 
+            display: none; /* Disembunyikan dulu sebelum cover dibuka */
         }
         
         .music-paused {
@@ -201,67 +223,46 @@
             filter: grayscale(100%);
         }
 
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Bottom Navigation */
+        /* --- NAVIGASI BAWAH (BOTTOM BAR) --- */
         .bottom-nav {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            background: rgba(47, 82, 51, 0.95); /* Green background */
-            backdrop-filter: blur(10px);
+            bottom: 20px; left: 50%;
+            transform: translateX(-50%); /* Posisi tengah */
+            width: 90%; max-width: 400px;
+            background: rgba(47, 82, 51, 0.95);
+            backdrop-filter: blur(10px); /* Efek kaca buram */
             border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            display: flex;
-            justify-content: space-around;
+            display: flex; justify-content: space-around;
             padding: 12px 0;
-            z-index: 100;
+            z-index: 9990;
             transition: all 0.5s ease;
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0; visibility: hidden; /* Sembunyi awal */
             border: 1px solid var(--primary-gold);
         }
 
-        .bottom-nav.visible {
-            opacity: 1;
-            visibility: visible;
-            bottom: 25px;
-        }
+        .bottom-nav.visible { opacity: 1; visibility: visible; bottom: 25px; }
 
         .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.75rem;
-            color: #ccc;
-            transition: color 0.3s;
-            cursor: pointer;
+            display: flex; flex-direction: column; align-items: center;
+            font-size: 0.75rem; color: #ccc;
+            transition: color 0.3s; cursor: pointer;
         }
 
-        .nav-item.active {
-            color: var(--primary-gold);
-        }
-        
-        .nav-item i {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
+        .nav-item.active { color: var(--primary-gold); } /* Warna ikon aktif */
+        .nav-item i { font-size: 1.2rem; margin-bottom: 4px; }
 
-        /* === UPGRADED: Photo Frame Glow === */
+        /* --- BINGKAI FOTO --- */
         .photo-frame {
             border: 4px solid var(--primary-gold);
             padding: 6px;
-            border-radius: 100px 100px 0 0; 
+            border-radius: 100px 100px 0 0; /* Lengkungan atas */
             position: relative;
             background: white;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            /* Add subtle glow animation */
-            animation: frame-glow 3s infinite alternate;
+            animation: frame-glow 3s infinite alternate; /* Animasi cahaya pinggir */
         }
         
         @keyframes frame-glow {
@@ -271,12 +272,10 @@
 
         .photo-frame img {
             border-radius: 95px 95px 0 0;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
+            width: 100%; height: auto; object-fit: cover;
         }
 
-        /* === UPGRADED: Button Shine Effect === */
+        /* --- TOMBOL MEWAH (SHIMMER) --- */
         .buka-btn {
             background: linear-gradient(to right, var(--primary-gold), #b38728);
             box-shadow: 0 0 20px rgba(197, 160, 89, 0.5);
@@ -285,29 +284,23 @@
             overflow: hidden;
         }
         
-        /* Shimmer sweep effect overlay */
+        /* Efek kilau lewat (Sweep) */
         .buka-btn::after, .shine-effect::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             animation: btn-sweep 3s infinite;
         }
         
         @keyframes btn-sweep {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
+            0% { left: -100%; } 20% { left: 100%; } 100% { left: 100%; }
         }
 
-        .buka-btn:active {
-            transform: scale(0.95);
-        }
+        .buka-btn:active { transform: scale(0.95); } /* Efek pencet */
 
-        /* Card Styling */
+        /* --- KARTU KACA (GLASSMORPHISM) --- */
         .glass-card {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(5px);
@@ -315,27 +308,23 @@
             box-shadow: 0 10px 30px rgba(47, 82, 51, 0.1);
         }
         
-        /* === ANIMASI KARTU MEWAH (SHIMMER) === */
+        /* Kartu Mewah dengan efek shimmer background */
         .luxury-card {
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
             transition: all 0.3s ease;
         }
         
+        /* Lapisan kilau bergerak pada kartu */
         .luxury-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -150%;
-            width: 150%;
-            height: 100%;
+            top: 0; left: -150%;
+            width: 150%; height: 100%;
             background: linear-gradient(
                 to right, 
-                transparent 0%, 
-                rgba(255, 215, 0, 0.2) 40%, 
+                transparent 0%, rgba(255, 215, 0, 0.2) 40%, 
                 rgba(255, 255, 255, 0.4) 50%, 
-                rgba(255, 215, 0, 0.2) 60%, 
-                transparent 100%
+                rgba(255, 215, 0, 0.2) 60%, transparent 100%
             );
             transform: skewX(-25deg);
             animation: shimmer 3s infinite;
@@ -349,12 +338,10 @@
         }
 
         @keyframes shimmer {
-            0% { left: -150%; }
-            50% { left: 150%; }
-            100% { left: 150%; }
+            0% { left: -150%; } 50% { left: 150%; } 100% { left: 150%; }
         }
 
-        /* Sparkle dots overlay inside cards */
+        /* Overlay Bintik Cahaya di dalam kartu */
         .sparkles {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -373,27 +360,37 @@
             100% { opacity: 0.3; background-position: 10px 10px, 35px 35px; }
         }
 
-        /* Map Container */
+        /* --- PETA LOKASI --- */
         .map-container iframe {
-            width: 100%;
-            height: 300px;
+            width: 100%; height: 300px;
             border-radius: 15px;
             border: 2px solid var(--primary-gold);
             box-shadow: 0 4px 10px rgba(197, 160, 89, 0.2);
+        }
+        
+        /* Scrollbar kustom untuk area ucapan */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2F5233; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #1a2f1c; }
+        
+        /* Animasi Marquee (Running Text) */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Animasi Daun Jatuh (Background) -->
-    <div class="leaf">
-        <div><img src="https://img.icons8.com/color/48/null/leaf.png" style="width: 20px; opacity: 0.5;"></div>
-        <div><img src="https://img.icons8.com/color/48/null/leaf.png" style="width: 30px; opacity: 0.3;"></div>
-        <div><img src="https://img.icons8.com/color/48/null/leaf.png" style="width: 25px; opacity: 0.4;"></div>
-        <div><img src="https://img.icons8.com/color/48/null/leaf.png" style="width: 15px; opacity: 0.6;"></div>
+    <!-- === ANIMASI BACKGROUND DINAMIS (REVISI) === -->
+    <!-- Kontainer Partikel Daun & Bunga (Dibuat lewat JS agar dinamis & banyak) -->
+    <!-- pointer-events: none memastikan user tetap bisa klik tombol di bawahnya -->
+    <div id="falling-scene" class="falling-container">
+        <!-- Elemen akan di-generate otomatis oleh Javascript di bawah -->
     </div>
     
-    <!-- === NEW: Firefly / Magic Dust Container === -->
+    <!-- Animasi Kunang-Kunang Tambahan -->
     <div class="firefly-container">
         <div class="firefly"></div>
         <div class="firefly"></div>
@@ -403,56 +400,61 @@
         <div class="firefly"></div>
     </div>
 
-    <!-- Audio Player -->
+    <!-- Audio Player (Musik Latar) -->
     <audio id="bg-music" loop>
+        <!-- Pastikan file lagu.mp3 ada di folder yang sama -->
         <source src="lagu.mp3" type="audio/mp3">
     </audio>
 
+    <!-- Tombol Kontrol Musik (Muncul setelah cover dibuka) -->
     <div id="music-btn" class="music-control" onclick="toggleMusic()">
         <i class="fas fa-compact-disc text-xl"></i>
     </div>
 
-    <!-- 1. COVER / SPLASH SCREEN -->
+    <!-- 1. COVER / HALAMAN PEMBUKA -->
     <div id="cover-overlay">
+        <!-- Hiasan Sudut (Ornamen) -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <!-- Ornamen Sudut -->
             <img src="https://www.svgrepo.com/show/422896/ornament-decoration-vintage-3.svg" class="absolute top-4 left-4 w-24 opacity-60 filter invert brightness-200" style="transform: rotate(180deg);">
             <img src="https://www.svgrepo.com/show/422896/ornament-decoration-vintage-3.svg" class="absolute bottom-4 right-4 w-24 opacity-60 filter invert brightness-200">
         </div>
 
+        <!-- Konten Teks Cover -->
         <div class="text-center p-6 relative z-10 text-white" data-aos="zoom-in" data-aos-duration="1500">
             <p class="uppercase tracking-[0.3em] text-xs mb-6 text-gray-200 font-header">The Wedding Of</p>
             
             <div class="relative">
+                <!-- Nama Mempelai dengan efek Emas -->
                 <h1 class="font-script text-6xl mb-2 text-gold py-2 drop-shadow-lg">Diana & Ikbal</h1>
                 <p class="text-xs tracking-widest mt-2 font-serif text-gray-300">18 . 01 . 2026</p>
             </div>
             
+            <!-- Pembatas dengan Hati -->
             <div class="divider-ornament my-8">
                 <i class="fas fa-heart text-gold text-xs"></i>
             </div>
             
+            <!-- Nama Tamu -->
             <p class="font-header text-gray-200 mb-2 text-sm">Kepada Yth.</p>
             <p class="font-header text-white font-bold text-xl mb-10 tracking-wide border-b border-yellow-600/50 inline-block pb-2">Bapak/Ibu/Saudara/i</p>
             
-            <!-- Tombol Buka Undangan sekarang memiliki class animate-pulse dihapus diganti efek internal yg lebih smooth -->
+            <!-- Tombol Buka Undangan -->
             <button onclick="openInvitation()" class="buka-btn text-white px-8 py-3 rounded-full font-bold flex items-center justify-center gap-3 mx-auto shadow-[0_0_20px_rgba(255,215,0,0.6)]">
                 <i class="fas fa-envelope-open"></i> Buka Undangan
             </button>
         </div>
     </div>
 
-    <!-- 2. MAIN CONTENT -->
+    <!-- 2. KONTEN UTAMA (Disembunyikan di awal) -->
     <main id="main-content" class="pb-28 hidden">
         
-        <!-- SECTION: HERO -->
+        <!-- SECTION: HERO (Foto Utama & Hitung Mundur) -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative overflow-hidden bg-cover bg-center" 
             style="background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop');">
             
-            <!-- Ornamen Atas -->
-            <img src="ikon.png" class="w-48 mx-auto mb-4 opacity-30" data-aos="fade-down">
+            <!-- Gambar Ikon/Bismillah di atas -->
+            <img src="https://img.icons8.com/ios/100/2F5233/wedding-rings.png" class="w-24 mx-auto mb-4 opacity-60" data-aos="fade-down" alt="Rings">
 
-            <!-- Bagian Save The Date -->
             <p class="text-sm tracking-[0.3em] uppercase mb-4 text-[#2F5233]" data-aos="fade-down" data-aos-delay="100">Save The Date</p>
             
             <div class="py-6 px-4 mb-8 relative" data-aos="zoom-in" data-aos-delay="200">
@@ -461,20 +463,24 @@
 
             <p class="font-header text-xl mb-6 font-bold text-[#2F5233]" data-aos="fade-up" data-aos-delay="300">Ahad, 18 Januari 2026</p>
             
-            <!-- Countdown Timer (Animasi muncul dari bawah) -->
+            <!-- Countdown Timer -->
             <div class="flex gap-4 mt-2 justify-center" data-aos="zoom-in-up" data-aos-delay="400" data-aos-duration="1000">
+                <!-- Kotak Hari -->
                 <div class="glass-card p-3 rounded-lg w-16 border-b-4 border-[#2F5233]">
                     <span id="days" class="block text-2xl font-bold font-header text-[#2F5233]">00</span>
                     <span class="text-[0.6rem] uppercase tracking-wider text-gray-500">Hari</span>
                 </div>
+                <!-- Kotak Jam -->
                 <div class="glass-card p-3 rounded-lg w-16 border-b-4 border-[#2F5233]">
                     <span id="hours" class="block text-2xl font-bold font-header text-[#2F5233]">00</span>
                     <span class="text-[0.6rem] uppercase tracking-wider text-gray-500">Jam</span>
                 </div>
+                <!-- Kotak Menit -->
                 <div class="glass-card p-3 rounded-lg w-16 border-b-4 border-[#2F5233]">
                     <span id="minutes" class="block text-2xl font-bold font-header text-[#2F5233]">00</span>
                     <span class="text-[0.6rem] uppercase tracking-wider text-gray-500">Menit</span>
                 </div>
+                <!-- Kotak Detik -->
                 <div class="glass-card p-3 rounded-lg w-16 border-b-4 border-[#2F5233]">
                     <span id="seconds" class="block text-2xl font-bold font-header text-[#2F5233]">00</span>
                     <span class="text-[0.6rem] uppercase tracking-wider text-gray-500">Detik</span>
@@ -482,11 +488,11 @@
             </div>
         </section>
 
-        <!-- SECTION: AYAT & MEMPELAI -->
+        <!-- SECTION: MEMPELAI (Data Pengantin) -->
         <section id="couple" class="py-20 px-6 relative overflow-hidden bg-white/50">
             <div class="max-w-2xl mx-auto text-center">
                 
-                <!-- Ayat (Animasi Fade Up) -->
+                <!-- Ayat Suci -->
                 <div data-aos="fade-up" data-aos-duration="1200">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Basmala.svg" alt="Bismillah" class="w-48 mx-auto mb-8 opacity-80">
                     
@@ -496,43 +502,44 @@
                     </p>
                 </div>
 
+                <!-- Pembatas Daun -->
                 <div class="divider-ornament" data-aos="zoom-in"><i class="fas fa-leaf divider-icon"></i></div>
 
-                <!-- Bride (Animasi dari Kanan) -->
+                <!-- Mempelai Wanita -->
                 <div class="mt-12" data-aos="fade-right" data-aos-duration="1200">
                     <div class="w-40 h-44 mx-auto mb-6 photo-frame transform rotate-2 hover:rotate-0 transition duration-500">
-                        <!-- Placeholder Image Wanita Muslimah -->
-                        <img src="nikah2.png" alt="Diana">
+                        <!-- Ganti src dengan foto asli mempelai wanita -->
+                        <img src="https://img.freepik.com/free-photo/beautiful-woman-wearing-hijab-posing_23-2148473617.jpg" alt="Diana">
                     </div>
                     <h2 class="font-script text-4xl text-[#2F5233] mb-2 font-bold text-gold">Nurdiana R. Hrp, S.Si</h2>
                     <p class="text-sm text-gray-600 font-serif">Putri Bpk. Ramadhan Harahap (Alm) <br>& Ibu Sakdiah Nasution</p>
-                    <a href="https://instagram.com" class="inline-block mt-3 text-[#2F5233] text-lg"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="inline-block mt-3 text-[#2F5233] text-lg"><i class="fab fa-instagram"></i></a>
                 </div>
 
                 <div class="text-4xl font-script text-gold my-10 animate-pulse" data-aos="zoom-in">&</div>
 
-                <!-- Groom (Animasi dari Kiri) -->
+                <!-- Mempelai Pria -->
                 <div class="" data-aos="fade-left" data-aos-duration="1200">
                     <div class="w-40 h-44 mx-auto mb-6 photo-frame transform -rotate-2 hover:rotate-0 transition duration-500">
-                        <!-- Placeholder Image Pria Muslim -->
-                        <img src="nikah1.png" alt="Ikbal" style="object-position: right;">
+                        <!-- Ganti src dengan foto asli mempelai pria -->
+                        <img src="https://img.freepik.com/free-photo/handsome-muslim-man_23-2148967963.jpg" alt="Ikbal" style="object-position: top;">
                     </div>
                     <h2 class="font-script text-4xl text-[#2F5233] mb-2 font-bold text-gold">M. Ikbal Rambe, S.Tp</h2>
                     <p class="text-sm text-gray-600 font-serif">Putra Bpk. Tohiruddin Rambe (Alm) <br>& Ibu Nurlaila Murni Nasution, A.Ma</p>
-                    <a href="https://instagram.com" class="inline-block mt-3 text-[#2F5233] text-lg"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="inline-block mt-3 text-[#2F5233] text-lg"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: EVENTS -->
+        <!-- SECTION: ACARA (Waktu & Tempat) -->
         <section id="event" class="py-16 px-6 bg-[#f0f4f1] relative">
-            <!-- Background Ornament -->
+            <!-- Ornamen Background Statis -->
             <div class="absolute top-0 right-0 opacity-10 pointer-events-none">
                 <img src="https://www.svgrepo.com/show/339458/floral-ornament.svg" class="w-64 transform rotate-180">
             </div>
 
             <div class="max-w-3xl mx-auto text-center relative z-10">
-                <!-- Rangkaian Acara (Judul) -->
+                <!-- Judul Acara -->
                 <div data-aos="fade-down" data-aos-duration="1000">
                     <h2 class="font-header text-3xl text-[#2F5233] mb-10 relative inline-block">
                         Rangkaian Acara
@@ -541,7 +548,7 @@
                 </div>
                 
                 <div class="grid md:grid-cols-2 gap-6">
-                    <!-- Akad Card (Animasi Flip Left) -->
+                    <!-- Kartu Akad -->
                     <div class="glass-card p-8 rounded-xl relative overflow-hidden group hover:-translate-y-2 transition duration-300 luxury-card" data-aos="flip-left" data-aos-duration="1200">
                         <div class="absolute top-0 right-0 bg-[#2F5233] text-white text-xs px-3 py-1 rounded-bl-lg">Sakral</div>
                         <i class="fas fa-file-signature text-4xl text-[#C5A059] mb-4"></i>
@@ -552,7 +559,7 @@
                         <p class="text-gray-500 text-sm">Sampai Selesai</p>
                     </div>
 
-                    <!-- Resepsi Card (Animasi Flip Right) -->
+                    <!-- Kartu Resepsi -->
                     <div class="glass-card p-8 rounded-xl relative overflow-hidden group hover:-translate-y-2 transition duration-300 luxury-card" data-aos="flip-right" data-aos-delay="200" data-aos-duration="1200">
                          <div class="absolute top-0 right-0 bg-[#C5A059] text-white text-xs px-3 py-1 rounded-bl-lg">Pesta</div>
                         <i class="fas fa-glass-cheers text-4xl text-[#C5A059] mb-4"></i>
@@ -564,7 +571,7 @@
                     </div>
                 </div>
 
-                <!-- Location Map (Bagian Lokasi & Minimap) -->
+                <!-- Lokasi & Peta -->
                 <div class="mt-12" data-aos="zoom-in-up" data-aos-duration="1000">
                     <div class="bg-white p-4 rounded-2xl shadow-lg border border-[#C5A059]">
                         <p class="font-bold mb-4 text-[#2F5233] text-lg font-header" data-aos="fade-down"><i class="fas fa-map-marked-alt mr-2"></i>Lokasi Acara</p>
@@ -572,7 +579,7 @@
                             Jl. P. Ali Basya, Gg. Kamboja, Sigiring-Giring, Padangsidimpuan
                         </p>
                         
-                        <!-- Google Map Embed (Placeholder pointing to Padangsidimpuan) -->
+                        <!-- Embed Google Maps -->
                         <div class="map-container mb-4" data-aos="zoom-in" data-aos-delay="300">
                             <iframe 
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31899.704788320625!2d99.25565576757656!3d1.3739777934444537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x302c1c6e174b1c79%3A0x3039d80b220cc30!2sPadangsidimpuan%2C%20Padang%20Sidempuan%20City%2C%20North%20Sumatra!5e0!3m2!1sen!2sid!4v1709217000000!5m2!1sen!2sid" 
@@ -580,6 +587,7 @@
                             </iframe>
                         </div>
 
+                        <!-- Tombol Buka Maps -->
                         <a href="https://maps.app.goo.gl/t7bgkrNbsm66m2pj9" target="_blank" 
                            class="shine-effect inline-block bg-[#2F5233] text-white px-8 py-3 rounded-full shadow-lg hover:bg-[#1f3822] transition transform hover:scale-105 ring-2 ring-[#C5A059] ring-offset-2 relative overflow-hidden"
                            data-aos="fade-up" data-aos-delay="400">
@@ -590,7 +598,7 @@
             </div>
         </section>
 
-        <!-- SECTION: GIFT / AMPLOP DIGITAL -->
+        <!-- SECTION: HADIAH (Nomor Rekening) -->
         <section id="gift" class="py-16 px-6 bg-white relative">
             <div class="max-w-xl mx-auto text-center">
                 <div data-aos="fade-down" data-aos-duration="1000">
@@ -599,9 +607,9 @@
                 </div>
                 
                 <div class="space-y-6">
-                    <!-- Bank Item 1: MANDIRI (Sparkling Animation) -->
+                    <!-- Bank Item 1: MANDIRI -->
                     <div class="glass-card luxury-card p-6 rounded-xl border-l-4 border-[#2F5233] text-left relative" data-aos="fade-left" data-aos-duration="1000">
-                        <div class="sparkles"></div> <!-- Sparkle Overlay -->
+                        <div class="sparkles"></div> <!-- Efek Kelip -->
                         <div class="flex items-center justify-between mb-2">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Mandiri" class="h-8">
                             <i class="fas fa-credit-card text-yellow-600 text-2xl"></i>
@@ -614,9 +622,9 @@
                         </button>
                     </div>
 
-                    <!-- Bank Item 2: BSI (Sparkling Animation) -->
+                    <!-- Bank Item 2: BSI -->
                     <div class="glass-card luxury-card p-6 rounded-xl border-l-4 border-[#C5A059] text-left relative" data-aos="fade-right" data-aos-duration="1000">
-                         <div class="sparkles"></div> <!-- Sparkle Overlay -->
+                         <div class="sparkles"></div> <!-- Efek Kelip -->
                          <div class="flex items-center justify-between mb-2">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Bank_Syariah_Indonesia.svg" alt="BSI" class="h-8">
                             <i class="fas fa-credit-card text-yellow-600 text-2xl"></i>
@@ -632,11 +640,13 @@
             </div>
         </section>
 
-        <!-- SECTION: TURUT MENGUNDANG -->
+        <!-- SECTION: TURUT MENGUNDANG (Running Text) -->
+        <!-- REVISI: Kecepatan diperlambat (45s) agar mudah dibaca -->
         <section class="py-10 bg-[#2F5233] text-white border-t border-[#C5A059] overflow-hidden">
             <h3 class="text-center font-header text-xl mb-6 text-[#C5A059]" data-aos="fade-up">Turut Mengundang</h3>
             <div class="relative w-full overflow-hidden" data-aos="fade-in">
-                <div class="whitespace-nowrap animate-[marquee_25s_linear_infinite] inline-block font-serif text-sm opacity-90">
+                <!-- animate-[marquee_45s_linear_infinite] digunakan untuk mengatur kecepatan -->
+                <div class="whitespace-nowrap animate-[marquee_45s_linear_infinite] inline-block font-serif text-sm opacity-90">
                     <span class="mx-6">Kel. Besar Darhadi Hamonangan Harahap</span> • 
                     <span class="mx-6">Kel. Besar Abdul Malik Harahap</span> • 
                     <span class="mx-6">Kel. Besar Pangulu Harahap</span> • 
@@ -653,12 +663,12 @@
             </div>
         </section>
 
-        <!-- SECTION: UCAPAN & DOA -->
+        <!-- SECTION: UCAPAN & DOA (Buku Tamu) -->
         <section id="wishes" class="py-16 px-6 bg-[#f7f3e8] relative">
             <div class="max-w-2xl mx-auto">
                 <h2 class="font-header text-3xl text-center text-[#2F5233] mb-8" data-aos="fade-down">Kirim Ucapan</h2>
                 
-                <!-- Form Kirim Ucapan (Fade Up) -->
+                <!-- Form Input Ucapan -->
                 <div class="bg-white p-6 rounded-xl shadow-md mb-8 border border-[#C5A059]/30" data-aos="fade-up" data-aos-duration="1000">
                     <form onsubmit="event.preventDefault(); addWish();">
                         <input type="text" id="senderName" placeholder="Nama Anda" class="w-full p-3 mb-3 bg-[#F9F9F9] border border-gray-200 rounded-lg focus:outline-none focus:border-[#2F5233] transition" required>
@@ -667,8 +677,9 @@
                     </form>
                 </div>
 
-                <!-- Mock Comments Area (Fade Up Delayed) -->
+                <!-- Daftar Komentar (Dummy Data) -->
                 <div id="wishesContainer" class="space-y-4 max-h-80 overflow-y-auto pr-2 custom-scrollbar" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Komentar 1 -->
                     <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-[#2F5233]">
                         <div class="flex items-center gap-2 mb-1">
                             <div class="w-8 h-8 rounded-full bg-[#2F5233] text-white flex items-center justify-center text-xs font-bold">SD</div>
@@ -679,6 +690,7 @@
                         </div>
                         <p class="text-sm text-gray-600 mt-2">Selamat ya Diana & Ikbal! Semoga menjadi keluarga SAMAWA. Cantik banget undangannya hijau emas 😍</p>
                     </div>
+                    <!-- Komentar 2 -->
                     <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-[#C5A059]">
                         <div class="flex items-center gap-2 mb-1">
                             <div class="w-8 h-8 rounded-full bg-[#C5A059] text-white flex items-center justify-center text-xs font-bold">RK</div>
@@ -695,7 +707,7 @@
 
         <!-- FOOTER -->
         <footer class="text-center py-10 bg-[#1a2f1c] text-white text-xs relative overflow-hidden">
-            <!-- Footer Ornament -->
+            <!-- Ornamen Footer -->
              <img src="https://www.svgrepo.com/show/422896/ornament-decoration-vintage-3.svg" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-64 opacity-10 filter invert">
              
             <div data-aos="fade-in" data-aos-offset="0">
@@ -707,7 +719,7 @@
 
     </main>
 
-    <!-- BOTTOM NAVIGATION -->
+    <!-- NAVIGASI MENGAMBANG DI BAWAH -->
     <nav class="bottom-nav">
         <a href="#home" class="nav-item active" onclick="setActiveNav(this)">
             <i class="fas fa-home"></i>
@@ -731,16 +743,78 @@
         </a>
     </nav>
     
-    <!-- Notification Toast (Hidden by default) -->
+    <!-- NOTIFIKASI TOAST (Muncul saat salin rekening) -->
     <div id="toast" class="fixed top-5 left-1/2 transform -translate-x-1/2 bg-[#2F5233] text-white px-6 py-3 rounded-full shadow-2xl z-[99999] transition-all duration-300 opacity-0 invisible flex items-center gap-2">
         <i class="fas fa-check-circle text-[#C5A059]"></i>
         <span class="text-sm font-bold">Nomor berhasil disalin!</span>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- === JAVASCRIPT === -->
+    <!-- Memuat Script AOS (Animation On Scroll) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        // Global Functions for HTML event attributes
+        // === FUNGSI GENERATOR ANIMASI JATUH (REVISI BARU) ===
+        // Membuat efek daun/bunga jatuh secara acak agar terlihat meriah dan alami
+        function createFallingElements() {
+            const container = document.getElementById('falling-scene');
+            // REVISI: Mengurangi kepadatan dari 40 ke 15
+            const count = 15; 
+            
+            // REVISI: Menghapus ikon Brand (maple) yang menyebabkan error F185
+            // Menggunakan ikon Solid (fas) yang aman
+            const icons = [
+                'fa-leaf',             // Ikon Daun
+                'fa-seedling',         // Ikon Tunas
+                'fa-spa',              // Ikon Bunga Lotus
+                'fa-feather'           // Ikon Bulu (Ganti snowflake/maple agar lebih elegan)
+            ];
+            
+            // Warna-warna mewah sesuai permintaan: Hijau, Emas, Coklat
+            const colors = [
+                '#2F5233', // Hijau Tua
+                '#76B947', // Hijau Muda
+                '#C5A059', // Emas
+                '#8B4513', // Coklat Tembaga
+                '#DAA520'  // Goldenrod
+            ];
+
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('i');
+                
+                // Pilih ikon dan warna secara acak
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Menambahkan class 'fas' (Font Awesome Solid) yang sudah pasti benar
+                el.classList.add('fas', randomIcon, 'falling-item');
+                
+                // Styling acak untuk posisi dan animasi
+                el.style.left = Math.random() * 100 + 'vw'; // Posisi horizontal acak
+                el.style.color = randomColor;
+                el.style.fontSize = (Math.random() * 20 + 10) + 'px'; // Ukuran acak 10px - 30px
+                el.style.opacity = Math.random() * 0.5 + 0.3; // Transparansi
+                
+                // Durasi animasi (antara 8 sampai 18 detik) - Variasi kecepatan
+                const duration = Math.random() * 10 + 8;
+                el.style.animationDuration = duration + 's';
+                
+                // Delay animasi agar tidak jatuh bersamaan
+                el.style.animationDelay = Math.random() * 15 + 's';
+                
+                // Nama animasi (beberapa jatuh miring kiri, beberapa miring kanan)
+                const animName = Math.random() > 0.5 ? 'falling-sway' : 'falling-sway-reverse';
+                el.style.animationName = animName;
+                el.style.animationTimingFunction = 'linear';
+                el.style.animationIterationCount = 'infinite';
+
+                container.appendChild(el);
+            }
+        }
+
+        // === FUNGSI LOGIKA UTAMA ===
+        
+        // Fungsi Membuka Undangan
         function openInvitation() {
             const cover = document.getElementById('cover-overlay');
             const main = document.getElementById('main-content');
@@ -748,27 +822,29 @@
             const nav = document.querySelector('.bottom-nav');
             const audio = document.getElementById('bg-music');
 
-            // Slide up cover
+            // 1. Geser cover ke atas
             cover.classList.add('cover-hidden');
             
-            // Show main content
+            // 2. Tampilkan konten utama
             main.classList.remove('hidden');
             
-            // Play Music
+            // 3. Putar Musik
+            // Menggunakan catch error jika browser memblokir autoplay
             audio.play().catch(e => console.log("Audio play blocked need interaction"));
             musicBtn.style.display = 'flex';
             
-            // Show Nav
+            // 4. Munculkan Navigasi Bawah dengan jeda sedikit
             setTimeout(() => {
                 nav.classList.add('visible');
             }, 800);
 
-            // Re-trigger AOS for elements inside main
+            // 5. Refresh animasi AOS agar elemen di dalam main ter-trigger
             setTimeout(() => {
                 AOS.refresh();
             }, 500);
         }
 
+        // Fungsi Tombol Musik (Play/Pause)
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
             const btn = document.getElementById('music-btn');
@@ -778,21 +854,25 @@
                 btn.classList.remove('music-paused');
             } else {
                 audio.pause();
-                btn.classList.add('music-paused');
+                btn.classList.add('music-paused'); // Tambah efek grayscale saat pause
             }
         }
 
+        // Fungsi Ganti Menu Aktif di Navigasi Bawah
         function setActiveNav(element) {
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
         }
 
+        // Fungsi Salin Nomor Rekening
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const toast = document.getElementById('toast');
+                // Tampilkan Toast
                 toast.classList.remove('opacity-0', 'invisible');
-                toast.classList.add('top-10'); // animation slide down
+                toast.classList.add('top-10'); // Efek geser ke bawah
                 
+                // Sembunyikan setelah 3 detik
                 setTimeout(() => {
                     toast.classList.add('opacity-0', 'invisible');
                     toast.classList.remove('top-10');
@@ -800,16 +880,17 @@
             });
         }
 
+        // Fungsi Kirim Ucapan (Simulasi Frontend Saja)
         function addWish() {
             const name = document.getElementById('senderName').value;
             const msg = document.getElementById('senderMsg').value;
             const container = document.getElementById('wishesContainer');
 
             if(name && msg) {
-                // Get Initials
+                // Ambil Inisial Nama (Contoh: "Budi Santoso" -> "BS")
                 const initials = name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase();
                 
-                // Animasi masuk (aos-animate akan di-trigger)
+                // Template HTML ucapan baru
                 const newWish = `
                     <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-[#2F5233] transition-all duration-500 transform translate-y-0 opacity-100" data-aos="fade-in">
                         <div class="flex items-center gap-2 mb-1">
@@ -823,46 +904,48 @@
                     </div>
                 `;
                 
-                // Masukkan ke bagian atas list
+                // Masukkan ucapan ke paling atas list
                 container.insertAdjacentHTML('afterbegin', newWish);
                 
-                // Clear form
+                // Kosongkan form input
                 document.getElementById('senderName').value = '';
                 document.getElementById('senderMsg').value = '';
                 
-                // Scroll sedikit ke area pesan agar user melihat pesannya masuk
-                // Menggunakan smooth scroll
-                container.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                // Scroll otomatis ke area ucapan agar user melihat pesannya
+                container.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        // Initialize script logic safely when DOM is ready
+        // === EKSEKUSI SAAT HALAMAN SELESAI DIMUAT ===
         document.addEventListener('DOMContentLoaded', () => {
-            // Init AOS Animation dengan Konfigurasi Muncul & Hilang
+            
+            // 1. Jalankan Generator Animasi Daun/Bunga
+            createFallingElements();
+
+            // 2. Inisialisasi Library AOS (Animasi Scroll)
             AOS.init({
-                once: false,       // Animasi berulang setiap kali elemen masuk viewport
-                mirror: true,      // Animasi saat elemen keluar viewport (scroll balik)
-                duration: 1200,    // Durasi animasi lebih halus
+                once: false,       // Animasi berulang setiap kali elemen masuk layar
+                mirror: true,      // Animasi jalan juga saat scroll ke atas
+                duration: 1200,    // Durasi animasi (ms)
                 offset: 100,       // Jarak trigger animasi dari bawah layar
-                easing: 'ease-out-cubic'
+                easing: 'ease-out-cubic' // Gaya gerakan animasi
             });
 
-            // 3. Logic Countdown
-            // Set tanggal: 18 Januari 2026, jam 08:00
+            // 3. Logika Hitung Mundur (Countdown)
+            // Target: 18 Januari 2026, jam 08:00
             const countDownDate = new Date("Jan 18, 2026 08:00:00").getTime();
 
             const countdownInterval = setInterval(function() {
                 const now = new Date().getTime();
                 const distance = countDownDate - now;
 
+                // Rumus konversi waktu
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+                // Update elemen HTML
                 const elDays = document.getElementById("days");
                 const elHours = document.getElementById("hours");
                 const elMinutes = document.getElementById("minutes");
@@ -873,8 +956,10 @@
                 if (elMinutes) elMinutes.innerText = minutes < 10 ? '0'+minutes : minutes;
                 if (elSeconds) elSeconds.innerText = seconds < 10 ? '0'+seconds : seconds;
 
+                // Jika waktu habis
                 if (distance < 0) {
                     clearInterval(countdownInterval);
+                    // Set semua jadi 00
                     if (elDays) elDays.innerHTML = "00";
                     if (elHours) elHours.innerHTML = "00";
                     if (elMinutes) elMinutes.innerHTML = "00";
@@ -882,18 +967,20 @@
                 }
             }, 1000);
 
-            // Scroll Listener
+            // 4. Logika Spy Scroll (Menu aktif otomatis saat scroll)
             window.addEventListener('scroll', () => {
                 let current = '';
                 const sections = document.querySelectorAll('section');
                 
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
+                    // Jika posisi scroll mendekati section
                     if (scrollY >= sectionTop - 250) {
                         current = section.getAttribute('id');
                     }
                 });
 
+                // Update kelas 'active' pada menu bawah
                 document.querySelectorAll('.nav-item').forEach(li => {
                     li.classList.remove('active');
                     if (li.getAttribute('href').includes(current)) {
@@ -903,28 +990,5 @@
             });
         });
     </script>
-    
-    <style>
-        /* Marquee Animation */
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        
-        /* Custom Scrollbar for Wishes */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1; 
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #2F5233; 
-            border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #1a2f1c; 
-        }
-    </style>
 </body>
 </html>
